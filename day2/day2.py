@@ -16,9 +16,6 @@ results_part1 = {
     "C Z": 3,
 }
 
-###########################
-###########################
-
 result_part2 = {
     "X": 0,
     "Y": 3,
@@ -39,21 +36,18 @@ me_part2 = {
 
 with open("day2/input_day2.txt") as file_:
     input = file_.read()
-    
     games = [game for game in input.split("\n")]
-    
+
     # Part 1
     games_score = sum([results_part1[game] for game in games])
-    
+
     my_choose = [[choose for choose in chooses.split(" ")][1] for chooses in games]
     choose_score = sum([me_part1[num] for num in my_choose])
-
     print(games_score + choose_score)
 
     # Part 2
     result_games = [[choose for choose in chooses.split(" ")][1] for chooses in games]
+
     choose_score = sum([result_part2[result] for result in result_games])
-    
     games_score = sum([me_part2[game] for game in games])
     print(games_score + choose_score)
-    

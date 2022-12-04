@@ -23,7 +23,6 @@ with open("day3/input_day3.txt") as file_:
             if letter in letters_second_part[index]:
                 share_items.append(letter)
                 total_sum += priorities[letter]
-
     print(total_sum)
 
     # Part 2
@@ -34,7 +33,7 @@ with open("day3/input_day3.txt") as file_:
     share_items = []
     for num in range(int(len(input_list)/3)):
         group_of_three = input_list[x:y]
-        share_items.append(list(set(list(group_of_three[0])).intersection(list(set(group_of_three[1])), list(set(group_of_three[2])))))
+        share_items.append(list(set(group_of_three[0]).intersection(group_of_three[1], group_of_three[2])))
         x+=3
         y+=3
     
