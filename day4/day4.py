@@ -18,6 +18,10 @@ def find_any_contained_range(start1, end1, start2, end2):
             continue
     return is_contained
 
+def get_start_end_range(elf_range):
+    start, end = elf_range.split("-")
+    return int(start), int(end)+1
+
 
 with open("day4/input_day4.txt") as file_:
     input = file_.read()
@@ -28,13 +32,8 @@ with open("day4/input_day4.txt") as file_:
     for pair in pairs:
         elf1, elf2 = pair.split(",")
 
-        start1, end1 = elf1.split("-")
-        start2, end2 = elf2.split("-")
-
-        start1 = int(start1)
-        end1 = int(end1)+1
-        start2 = int(start2)
-        end2 = int(end2)+1
+        start1, end1 = get_start_end_range(elf1)
+        start2, end2 = get_start_end_range(elf2)
 
         # Part 1
         is_all_contained = find_all_contained_range(start1, end1, start2, end2)
@@ -46,10 +45,11 @@ with open("day4/input_day4.txt") as file_:
 
         # Part 2
         is_any_contained = find_any_contained_range(start1, end1, start2, end2)
-
         if not is_any_contained:
             find_any_contained_range(start2, end2, start1, end1)
+
         if is_any_contained:
             total_any_constains += 1
+
     print(f"{total_all_constains=}")
     print(f"{total_any_constains=}")
