@@ -1,3 +1,4 @@
+# GAME RULES
 me_part1 = {
     "X": 1,  #Rock
     "Y": 2,  #Paper
@@ -33,6 +34,7 @@ me_part2 = {
     "C Y": 3,
     "C Z": 1,
 }
+############
 
 with open("day2/input_day2.txt") as file_:
     input = file_.read()
