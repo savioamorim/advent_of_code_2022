@@ -11,6 +11,7 @@
 """
 
 from copy import deepcopy
+from typing import Dict
 
 
 stacks = {
@@ -45,6 +46,12 @@ def get_stacks_position(move: str):
     stack_from, stack_to = move.split("to")
     return stack_from.strip(), stack_to.strip()
 
+def get_top_crates(stack: Dict[str, str]):
+    final_crates_on_top = []
+    for values in stack.values():
+        final_crates_on_top.append(values.pop())
+    return "".join(final_crates_on_top)
+
 with open("day5/input_day5.txt") as file_:
     input = file_.read()
 
@@ -61,13 +68,5 @@ with open("day5/input_day5.txt") as file_:
         # Part 2
         move_crates_reverse(qty, stack_from, stack_to)
 
-    final_crates_on_top_part_1 = []
-    for values in stacks_part_1.values():
-        final_crates_on_top_part_1.append(values.pop())
-    
-    final_crates_on_top_part_2 = []
-    for values in stacks_part_2.values():
-        final_crates_on_top_part_2.append(values.pop())
-
-    print("Part 1 top crates:", "".join(final_crates_on_top_part_1))
-    print("Part 2 top crates:", "".join(final_crates_on_top_part_2))
+    print("Part 1 top crates:", get_top_crates(stacks_part_1))
+    print("Part 2 top crates:", get_top_crates(stacks_part_2))
