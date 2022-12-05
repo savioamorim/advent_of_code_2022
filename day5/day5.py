@@ -11,7 +11,7 @@
 """
 
 from copy import deepcopy
-from typing import Dict
+from typing import Dict, List
 
 
 stacks = {
@@ -27,26 +27,26 @@ stacks = {
 }
 
 
-def move_crates(qty: int, stack_from: str, stack_to: str):
+def move_crates(qty: int, stack_from: str, stack_to: str) -> None:
     for _ in range(qty):
         stacks_part_1[stack_to].append(stacks_part_1[stack_from].pop())
 
-def move_crates_reverse(qty: int, stack_from: str, stack_to: str):
+def move_crates_reverse(qty: int, stack_from: str, stack_to: str) -> None:
     crates_pop = []
     for _ in range(qty):
         crates_pop.append(stacks_part_2[stack_from].pop())
     crates_pop.reverse()
     stacks_part_2[stack_to].extend(crates_pop)
 
-def get_qty(move: str):
+def get_qty(move: str) -> int:
     qty = move.replace("move ", "").strip()
     return int(qty)
 
-def get_stacks_position(move: str):
+def get_stacks_position(move: str) -> str:
     stack_from, stack_to = move.split("to")
     return stack_from.strip(), stack_to.strip()
 
-def get_top_crates(stack: Dict[str, str]):
+def get_top_crates(stack: Dict[str, List[str]]) -> str:
     final_crates_on_top = []
     for values in stack.values():
         final_crates_on_top.append(values.pop())
