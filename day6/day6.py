@@ -1,24 +1,22 @@
+RANGE_PART_1 = 4
+RANGE_PART_2 = 14
+
+def find_duplicates(range: int, characters: str):
+    sliced_characters = []
+    sliced_characters = characters[character:character+range]
+    return True if [x for x in sliced_characters if sliced_characters.count(x) > 1] else False
+
 with open("day6/input_day6.txt") as file_:
     input = file_.read()
-    
-    characters = list(input)
-    found = False
-    for character in range(len(characters)):
-        # Part 1
-        four_characters = []
-        four_characters = characters[character:character+4]
-        duplicates = [x for x in four_characters if four_characters.count(x) > 1]
 
-        if not duplicates and not found:
-            print(f"{four_characters=}")
-            print(f"Position: {character+4}")
+    found = False
+    for character in range(len(input)):
+        # Part 1
+        if not found and not find_duplicates(RANGE_PART_1, input):
+            print(f"Position group of 4: {character+RANGE_PART_1}")
             found = True
 
         # Part 2
-        fourteen_characters = []
-        fourteen_characters = characters[character:character+14]
-        duplicates = [x for x in fourteen_characters if fourteen_characters.count(x) > 1]
-        if not duplicates:
-            print(f"{fourteen_characters=}")
-            print(f"Position: {character+14}")
+        if not find_duplicates(RANGE_PART_2, input):
+            print(f"Position group of 14: {character+RANGE_PART_2}")
             break
